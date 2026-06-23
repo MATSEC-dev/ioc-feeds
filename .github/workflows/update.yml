@@ -1,9 +1,10 @@
 name: Update OpenPhish Feed
 
 on:
+  workflow_dispatch:
+
   schedule:
     - cron: "0 */6 * * *"
-  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,14 +22,18 @@ jobs:
 
       - run: pip install requests
 
-      - run: python scripts/update_openphish.py
+      - name: Download feed
+        run: python scripts/update_openphish.py
+
+      - name: Update README
+        run: python scripts/update_readme.py
 
       - name: Commit changes
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-          git add feeds/openphish.txt
+          git add feeds/openphish.txt README.md
 
           git diff --staged --quiet || git commit -m "Update OpenPhish feed"
 
