@@ -1,4 +1,4 @@
-name: Update OpenPhish Feed
+name: Update Threat Intel Feeds
 
 on:
   workflow_dispatch:
@@ -20,10 +20,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - run: pip install requests
+      - name: Install dependencies
+        run: pip install requests
 
-      - name: Download feed
+      - name: Update OpenPhish
         run: python scripts/update_openphish.py
+
+      - name: Update URLhaus
+        run: python scripts/update_urlhaus.py
 
       - name: Update README
         run: python scripts/update_readme.py
@@ -33,8 +37,8 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-          git add feeds/openphish.txt README.md
+          git add feeds/ README.md
 
-          git diff --staged --quiet || git commit -m "Update OpenPhish feed"
+          git diff --staged --quiet || git commit -m "Automated IOC update"
 
           git push
