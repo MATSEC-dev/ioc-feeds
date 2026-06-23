@@ -1,33 +1,51 @@
 from pathlib import Path
 from datetime import datetime
 
-feed_file = Path("feeds/openphish.txt")
+def count_entries(filename):
+    path = Path(filename)
 
-if feed_file.exists():
-    count = sum(1 for line in feed_file.read_text(
-        encoding="utf-8"
-    ).splitlines() if line.strip())
-else:
-    count = 0
+    if not path.exists():
+        return 0
 
-timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+    return len([
+        line for line in path.read_text(
+            encoding="utf-8"
+        ).splitlines()
+        if line.strip() and not line.startswith("#")
+    ])
 
-readme = f"""# OpenPhish Feed Mirror
+openphish_count = count_entries("feeds/openphish.txt")
+urlhaus_count = count_entries("feeds/urlhaus.txt")
 
-This repository mirrors the public OpenPhish feed.
+total = openphish_count + urlhaus_count
+
+timestamp = datetime.utcnow().strftime(
+    "%Y-%m-%d %H:%M:%S UTC"
+)
+
+readme = f"""# Threat Intelligence Feed Mirror
+
+Automatically updated IOC feeds.
 
 ## Statistics
 
-| Metric | Value |
-|---------|---------|
-| URLs | {count:,} |
-| Last Updated (UTC) | {timestamp} |
+| Feed | Count |
+|--------|--------:|
+| OpenPhish URLs | {openphish_count:,} |
+| URLhaus URLs | {urlhaus_count:,} |
+| Total IOCs | {total:,} |
 
-## Feed
+Last Updated: **{timestamp}**
 
-- `feeds/openphish.txt`
+## Available Feeds
+
+- feeds/openphish.txt
+- feeds/urlhaus.txt
 """
 
-Path("README.md").write_text(readme, encoding="utf-8")
+Path("README.md").write_text(
+    readme,
+    encoding="utf-8"
+)
 
-print(f"README updated ({count:,} URLs)")
+print("README updated")
