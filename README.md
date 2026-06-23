@@ -1,14 +1,18 @@
-# OpenPhish Feed Mirror
+# Threat Intelligence Feed Mirror
 
-This repository mirrors the public OpenPhish feed.
+Automatically updated IOC feeds.
 
 ## Statistics
 
-| Metric | Value |
-|---------|---------|
-| URLs | 300 |
-| Last Updated (UTC) | 2026-06-23 16:46:41 UTC |
+| Feed | Count |
+|--------|--------:|
+| OpenPhish URLs | 300 |
+| URLhaus URLs | 78,528 |
+| Total IOCs | 78,828 |
 
-## Feed
+Last Updated: **2026-06-23 16:57:43 UTC**
 
-- `feeds/openphish.txt`
+## Available Feeds
+
+- feeds/openphish.txt
+- feeds/urlhaus.txt
