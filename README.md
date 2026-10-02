@@ -10,7 +10,7 @@ Automatically updated IOC feeds.
 | URLhaus URLs | 56,157 |
 | Total IOCs | 56,457 |
 
-Last Updated: **2026-10-02 11:49:09 UTC**
+Last Updated: **2026-10-02 17:22:49 UTC**
 
 ## Available Feeds
 
