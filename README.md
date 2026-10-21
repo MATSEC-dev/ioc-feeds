@@ -7,10 +7,10 @@ Automatically updated IOC feeds.
 | Feed | Count |
 |--------|--------:|
 | OpenPhish URLs | 300 |
-| URLhaus URLs | 73,428 |
-| Total IOCs | 73,728 |
+| URLhaus URLs | 73,338 |
+| Total IOCs | 73,638 |
 
-Last Updated: **2026-10-20 21:12:00 UTC**
+Last Updated: **2026-10-21 03:09:36 UTC**
 
 ## Available Feeds
 
